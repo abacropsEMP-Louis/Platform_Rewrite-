@@ -44,6 +44,20 @@ def Get_company_name(id, cursor):
 	#return the company name
 	return Company_info['Name']
 
-	
 
 
+#IF Change needed to any account password this is the function to call
+#Change the account by email
+def Update_Password(Email, New_Password, cursor, mYSQL):
+
+	if(True == cursor.execute('SELECT * FROM Employees WHERE Email = %s', (Email,)) ):
+		#Write command to mysql this command writes to the Employees.table
+		cursor.execute('UPDATE Employees set Password = %s WHERE Email = %s', (New_Password, Email,))
+		#Commit the execute command
+		mYSQL.connection.commit()
+
+	if(True == cursor.execute('SELECT * FROM Company WHERE Email = %s', (Email,)) ):
+		# Write command to mysql This command writes to the company.table
+		cursor.execute('UPDATE Company set Password = %s WHERE Email = %s', (New_Password, Email,))
+		#Commit the execute command
+		mYSQL.connection.commit()
