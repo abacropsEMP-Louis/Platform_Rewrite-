@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+
+    </head>
+    <body>
+        <div class="container">
+
+            <form method="post">
+
+                <input type="submit" value="btn_press">
+                
+
+                {% if btn == True %}
+                    <input type="email" value="email">
+                    {% elif  mess == True %}
+                        <h2> EMAIL FOUND </h2>
+                {% else %}
+                    <h1> Nothing</h1>
+                {% endif %}
+
+
+            </form>
+        
+        </div>
+    </body>
+</html>
