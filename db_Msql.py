@@ -46,6 +46,18 @@ def Get_company_name(id, cursor):
 
 
 
+#This function looks for a account in the database and returns a (BOOL VALUE)
+def Find_account_email(Email, cursor, mYSQL):
+	if(True == cursor.execute('SELECT * FROM Employees WHERE Email = %s', (Email,)) ):
+	#Write command to mysql this command writes to the Employees.table
+		return True
+		
+	if(True == cursor.execute('SELECT * FROM Company WHERE Email = %s', (Email,)) ):
+		return True
+
+	return False
+
+
 #IF Change needed to any account password this is the function to call
 #Change the account by email
 def Update_Password(Email, New_Password, cursor, mYSQL):
