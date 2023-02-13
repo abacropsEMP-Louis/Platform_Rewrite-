@@ -22,6 +22,7 @@ def find_email():
     session.clear()
     # This variable change if the email is found under a account
     session['account'] = False
+    session['error'] = False
 
     # Defining the mysql Cursor
     cursor = mYSQL.connection.cursor(MySQLdb.cursors.DictCursor)
@@ -47,7 +48,7 @@ def find_email():
         return redirect(url_for('Validate_email'))
     else:
         # Flash there is no account under this email
-        session['email'] = False
+        session['error'] = True
 
     return render_template('validator.html')
 
@@ -98,4 +99,4 @@ def New_password():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=718, debug=True)
+    app.run(host='0.0.0.0', port=78, debug=True)

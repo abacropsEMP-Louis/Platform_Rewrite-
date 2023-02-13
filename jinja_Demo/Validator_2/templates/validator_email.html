@@ -147,14 +147,6 @@
         <!--/.Content-->
     </div>
 </div>
-{% if session.error == true %}
-    <script>
-        $(document).ready(function(){
-        $('#modalError').modal('show');
-        $('#spanErrorMessage').text("Email not in the database");
-        });
-    </script>
-{% endif %}
 <!--Modal: modalError-->
 <div id="mdb-preloader" class="flex-center rgba-white-strong" style="background-color:rgba(255,255,255,.7); display:none">
     <div class="preloader-wrapper active">
@@ -215,34 +207,32 @@
                             <div class="card-body">
 
                                 <!-- Form -->
-                                <form method="post" action="/">
+                                <form method="post" >
                                     <!-- Heading -->
                                     <h3 class="dark-grey-text text-center">
                                         <strong> Recover account </strong>
                                     </h3>
                                     <hr>
-                                
+                                        
+                                    {% block content %}
+                                        <!-- This block display the email information -->
+                                    <span> 
+                                        Your have be send a validation code to, {{ email }}
+                                    </span>
+                                    {% endblock %}
 
 
-                                        <!-- show user a alert that ther is no account under this email -->        
-                                        <div class="md-form">
-                                            <i class="far fa-envelope prefix text-agropek-green"></i>
-                                            <input type="text" class="form-control form-control-sm" maxlength="250" autocomplete="off" required id="Email" name="Email" value="">
-                                            <label class="label-field" for="Email">Email</label>
-                                            <div class="text-center">
-                                            <button class="btn agropek-green text-white">Submit</button>                                            
-                                            {% with messages = get_flashed_messages() %}
-                                            {% if session.email == false %}
-                                            {% if message %}
-                                            {% for message in messages %}
-                                            <div class="alert alert-danger" role="alert">
-                                            {{ message }}
-                                            </div>
-                                            {% endfor %}
-                                            {% endif %}
-                                            {% endif %}
-                                            {% endwith %}
-                                        </div>   
+                                        <!-- This div holds the recovery key for -->
+                                    <div class="md-form">
+                                        <i class="far fa-envelope prefix text-agropek-green"></i>
+                                        <input type="text" class="form-control form-control-sm" maxlength="250" autocomplete="off" required id="key" name="key" value="">
+                                        <label class="label-field" for="key">Enter 6 digit validation key </label>
+                                    </div>
+                                    
+
+                                    <div class="text-center">
+                                        <button class="btn agropek-green text-white">Submit</button>
+                                        
                                     </div>
 
                                 </form>
@@ -281,3 +271,4 @@
     
 </body>
 </html>
+
