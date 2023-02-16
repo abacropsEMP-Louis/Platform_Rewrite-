@@ -147,7 +147,7 @@
         <!--/.Content-->
     </div>
 </div>
-{% if session.error == true %}
+{% if error_email == false %}
     <script>
         $(document).ready(function(){
         $('#modalError').modal('show');
