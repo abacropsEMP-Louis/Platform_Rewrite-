@@ -1,20 +1,31 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, flash, redirect, url_for, session
 
 app = Flask(__name__)
+
+app.secret_key = 'your_secret_key'
+
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 
 @app.route('/', methods=['GET', 'POST'])
 def btn_detection():
-	btn=False
-	mess='email'
-	if (request.method == "POST"):
-		btn = True
-		if (mess == 'email'):
-			mess = True
-		
-		return render_template("index.html", btn=btn, mess=True)
+    btn = False
+    mess = 'email'
+    if (request.method == "POST"):
+        btn = True
+        if (mess == 'email'):
+            mess = True
 
-	return render_template('index.html', btn=btn, mess=False)
+        flash('Aqui va un mensaje', 'info')
+        return render_template("index.html", btn=btn, mess=True)
+
+    flash('2 Aqui va otro mensaje', 'info')
+    return render_template('index.html', btn=btn, mess=False)
+
+
 if __name__ == "__main__":
 
-	app.run(host='127.0.0.1', port=80, debug=True)
+    app.run(host='127.0.0.1', port=909, debug=True)

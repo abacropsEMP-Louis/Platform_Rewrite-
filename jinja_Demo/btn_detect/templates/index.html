@@ -10,17 +10,17 @@
             <form method="post">
 
                 <input type="submit" value="btn_press">
-                
-
-                {% if btn == True %}
+                {% for message in get_flashed_messages() %}
+                  {% if btn == True %}
                     <input type="email" value="email">
-                    {% elif  mess == True %}
-                        <h2> EMAIL FOUND </h2>
-                {% else %}
-                    <h1> Nothing</h1>
-                {% endif %}
-
-
+                    {{ message }}
+                  {% elif  mess == True %}
+                     <h2> EMAIL FOUND </h2>
+                     {{ message }}
+                  {% else %}
+                     <h1> Nothing</h1>
+                  {% endif %}
+                {%endfor%}
             </form>
         
         </div>
