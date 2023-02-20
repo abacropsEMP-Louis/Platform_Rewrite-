@@ -1,1 +1,14 @@
+[Unit]
+Description=This is the service for the flask server
+After=network.targer
+
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/usr/bin/python3 ~/Platform_Rewrite-/main.py
+
+[Install]
+WantedBy=multi-user.targer
+
 
