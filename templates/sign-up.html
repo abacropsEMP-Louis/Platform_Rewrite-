@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Login - Abacrop</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='img_src/abacrop_logo.png') }}"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='img_src/abacrop_logo.png') }}"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='img_src/abacrop_logo.png') }}"/>
+
+    
+
+    
+        <link rel="stylesheet" href="  {{url_for('static', filename='css/all.css') }} "/>
+        <link rel="stylesheet" href="  {{url_for('static', filename='css/bootstrap.min.css')}}" />
+        <link rel="stylesheet" href=" {{url_for('static', filename='css/mdb.min.css') }}  " />
+
+        <link rel="stylesheet" href="{{url_for('static', filename='css/dataTables.bootstrap4.css') }} "/>
+        <link rel="stylesheet" href="{{url_for('static' , filename='css/select.bootstrap4.css')  }}" />
+        <link rel="stylesheet" href=" {{url_for('static', filename='css/buttons.bootstrap4.css') }}" />
+        <link rel="stylesheet" href=" {{url_for('static', filename='css/mdb-file-upload.min.css') }}" />
+        <link rel="stylesheet" href="  {{url_for('static', filename='css/flag-min.css') }}"/>
+
+        <link rel="stylesheet" href=" {{url_for('static', filename='css/cards-extended.min.css') }}" />
+        <link rel="stylesheet" href=" {{url_for('static',filename='css/stepper.min.css') }} " />
+        <link rel="stylesheet" href="  {{url_for('static',filename='css/abaxto.css') }} "  />
+        <link rel="stylesheet" href=" {{url_for('static',filename='css/agropek.css') }}" />
+    
+
+    
+
+    
+        <script src="{{url_for('static',filename='js/jquery-3.4.1.min.js') }} "></script>
+        <script src="{{url_for('static', filename='js/popper.min.js') }}"></script>
+        <script src="{{url_for('static', filename='js/stepper.min.js') }}"></script>
+
+        <script src="{{url_for('static', filename='js/datatables.js') }}"></script>
+        <script src="{{url_for('static', filename='js/dataTables.bootstrap4.js') }}"></script>
+        <script src="{{url_for('static', filename='js/select.bootstrap4.js')  }}"></script>
+        <script src="{{url_for('static' ,filename='js/buttons.bootstrap4.js')  }}"></script>
+
+        <script src="{{url_for('static',filename='js/bootstrap.js') }}"></script>
+        <script src="{{url_for('static', filename='js/mdb.js') }}"></script>
+        <script src="{{url_for('static' ,filename='js/session.js') }}"></script>
+    
+
+    <link rel="stylesheet" href="{{url_for('static', filename='js/cropper.css') }}" />
+    <script src="{{url_for('static', filename='js/cropper.js') }}"></script>
+    <script src="{{url_for('static', filename='js/jquery-cropper.js') }}"></script>
+    <script src="{{url_for('static', filename='js/site.js') }}"></script>
+
+
+</head>
+<body>
+    <!--partial name="_CookieConsentPartial" /-->
+    
+
+
+
+<!--Modal: modelInformation-->
+<div class="modal fade right" id="modalInformation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true" data-backdrop="true">
+    <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <p class="heading">
+                    <strong>Information Message</strong>
+                </p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-3">
+                        <p></p>
+                        <p class="text-center">
+                            <i class="fas fa-info fa-4x"></i>
+                        </p>
+                    </div>
+
+                    <div class="col-9">
+                        <p>
+                            <span id="spanInformationMessage"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer flex-center">
+                <a type="button" class="btn btn-outline-charcoal-light waves-effect" href="#" data-dismiss="modal">Cerrar</a>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+<!--Modal: modalInformation-->
+<!--Modal: modalError-->
+<div class="modal fade right" id="modalError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" style="z-index:1052;">
+    <div class="modal-dialog modal-dialog-centered modal-notify modal-info" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header red-background">
+                <p class="heading">
+                    <strong>Error Message</strong>
+                </p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-3">
+                        <p></p>
+                        <p class="text-center">
+                            <i class="fas fa-times fa-4x animated rotateIn red-text"></i>
+                        </p>
+                    </div>
+
+                    <div class="col-9">
+                        <p>
+                            <span id="spanErrorMessage"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer flex-center">
+                <a type="button" class="btn red-background waves-effect text-white" href="#" data-dismiss="modal">Cerrar</a>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+<!--Modal: modalError-->
+<div id="mdb-preloader" class="flex-center rgba-white-strong" style="background-color:rgba(255,255,255,.7); display:none">
+    <div class="preloader-wrapper active">
+        <div class="spinner-layer spinner-blue-only">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Full Page Intro -->
+<div id="home" class="view full-page-intro" style="height:100vh">
+    
+
+        <video class="video-intro" autoplay loop muted>
+            <source src="http://farm.abacrop.com/img/videos/background_video_light.mp4" type="video/mp4" />
+        </video>
+
+        <div class="mask d-flex justify-content-center align-items-center">
+            <!-- Content -->
+            <div class="container">
+                <div class="row">
+                    <div class="mx-auto">
+                        <img src="{{url_for('static' ,filename='img_src/abacrop_logo.png')}}" style="height:120px" />
+                    </div>
+                </div>
+                <!--Grid row-->
+                <div class="row wow fadeIn">
+
+                    <!--Grid column-->
+                    <div class="col-md-6 mb-4 white-text text-center mx-auto">
+
+                        <hr class="hr-light">
+
+                        <p class="mb-1">
+                            <strong>
+                                Developers Platform
+                            </strong>
+                        </p>
+                    </div>
+                    <!--Grid column-->
+                </div>
+                <div class="row wow fadeIn">
+                    <!--Grid column-->
+                    <div class="col-md-6 col-xl-5 mx-auto">
+
+                        <!--Card-->
+                        <div class="card">
+
+                            <!--Card content-->
+                            <div class="card-body">
+
+                                <!-- Form -->
+                                <form method="post" action="/">
+                                    <!-- Heading -->
+                                    <h3 class="dark-grey-text text-center">
+                                        <strong>Sign-Up</strong>
+                                    </h3>
+                                    <hr>
+                                    <div class="md-form">
+                                        <i class="far fa-envelope prefix text-agropek-green"></i>
+                                        <input type="text" class="form-control form-control-sm" maxlength="25" autocomplete="off" required id="FirstName" name="FirstName" value="">
+                                        <label class="label-field" for="FirstName">First Name</label>
+                                    </div>
+                                    <div class="md-form">
+                                        <i class="far fa-envelope prefix text-agropek-green"></i>
+                                        <input type="text" class="form-control form-control-sm" maxlength="25" autocomplete="off" required id="LastName" name="LastName" value="">
+                                        <label class="label-field" for="LastName">Last Name</label>
+                                    </div>
+                                    <div class="md-form">
+                                        <i class="far fa-envelope prefix text-agropek-green"></i>
+                                        <input type="text" class="form-control form-control-sm" maxlength="50" autocomplete="off" required id="CompanyName" name="CompanyName" value="">
+                                        <label class="label-field" for="CompanyName">Company Name</label>
+                                    </div>
+                                    <div class="md-form">
+                                        <i class="far fa-envelope prefix text-agropek-green"></i>
+                                        <input type="text" class="form-control form-control-sm" maxlength="25" autocomplete="off" required id="CompanyRole" name="CompanyRole" value="">
+                                        <label class="label-field" for="CompanyRole">Your Role in the Company</label>
+                                    </div>
+                                    <!-- <div class="md-form">
+                                        <i class="far fa-envelope prefix text-agropek-green"></i>
+                                        <input type="text" class="form-control form-control-sm" maxlength="25" autocomplete="off" required id="City" name="City" value="">
+                                        <label class="label-field" for="City">City</label>
+                                    </div>
+                                    <div class="md-form">
+                                        <i class="far fa-envelope prefix text-agropek-green"></i>
+                                        <input type="text" class="form-control form-control-sm" maxlength="25" autocomplete="off" required id="State" name="State" value="">
+                                        <label class="label-field" for="State">State</label>
+                                    </div>
+                                    <div class="md-form">
+                                        <i class="far fa-envelope prefix text-agropek-green"></i>
+                                        <input type="text" class="form-control form-control-sm" maxlength="25" autocomplete="off" required id="Country" name="Country" value="">
+                                        <label class="label-field" for="Country">Country</label>
+                                    </div>
+                                    <div class="md-form">
+                                        <i class="far fa-envelope prefix text-agropek-green"></i>
+                                        <input type="text" class="form-control form-control-sm" maxlength="25" autocomplete="off" required id="zip_code" name="zip_code" value="">
+                                        <label class="label-field" for="zip_code">zip_code</label>
+                                    </div> -->
+
+
+                                    <div class="md-form">
+                                        <i class="far fa-envelope prefix text-agropek-green"></i>
+                                        <input type="text" class="form-control form-control-sm" maxlength="250" autocomplete="off" required id="Email" name="Email" value="">
+                                        <label class="label-field" for="Email">Email</label>
+                                    </div>
+                                    <div class="md-form">
+                                        <i class="fa fa-lock prefix text-agropek-green"></i>
+                                        <input type="password" class="form-control form-control-sm" maxlength="15" autocomplete="off" required id="Password" name="Password">
+                                        <label class="label-field" for="Password">Password</label>
+                                    </div>
+
+
+                                   
+                                    <div class="text-center">
+                                        <button type='submit' class="btn agropek-green text-white">Sign-Up</button>
+                                        
+                                    <button class="btn agropek-green text-white" href="/index.html">All ready have an account?</button>
+                                    </div>
+
+                                <input name="__RequestVerificationToken" type="hidden" value="CfDJ8JZgfO30OD1CvkCY7JLJD_yVtx4rDntYSqn2Fi-AE0jM00Jfpjh5SkiYg9q7efe2_uA3QsFvwupiOl37vqyBw-e4M9XmdeJAckudlZ7VPS2BsezglTJ64df9NZQjXffAdHGZd2d1ykMQy-kfNgzvoiE" /></form>
+                                <!-- Form -->
+
+                            </div>
+
+                        </div>
+                        <!--/.Card-->
+
+                    </div>
+                    <!--Grid column-->
+
+                </div>
+                <!--Grid row-->
+
+            </div>
+            <!-- Content -->
+        </div>
+        <!-- Mask & flexbox options-->
+    </div>
+    <!-- Full Page Intro -->
+
+
+
+    
+
+        <script>
+            $(document).ready(function () {
+                $('.mdb-select').material_select();
+
+                $('.label-field').addClass('active')
+            });
+
+        </script>
+    
+</body>
+</html>
+
