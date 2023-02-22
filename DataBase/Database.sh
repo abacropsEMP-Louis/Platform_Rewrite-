@@ -22,5 +22,8 @@ sudo mysql -Bse "use Platform_abacrop; CREATE TABLE IF NOT EXISTS SuperUser( id_
     # Creating Company table
 sudo mysql -Bse "use Platform_abacrop; CREATE TABLE IF NOT EXISTS Company( company_id int NOT NULL, Name varchar(45) NOT NULL, Tax_id varchar(15) DEFAULT NULL, Email varchar(45) NOT NULL, Password varchar(75) NOT NULL,Amount_Employes int NOT NULL,PRIMARY KEY (company_id, Name));"
 
-# Creating Employees tables 
+# Creating Employees table 
 sudo mysql -Bse "use Platform_abacrop; Create TABLE IF NOT EXISTS Employees(user_id INT PRIMARY KEY NOT NULL, company_id INT, First_name VARCHAR(45) NOT NULL, Last_name VARCHAR(45) NOT NULL, Email VARCHAR(100) NOT NULL, FOREIGN KEY (company_id) REFERENCES Company(company_id));"
+
+# Creating Product table
+sudo mysql -Bse "use Platform_abacrop; Create TABLE IF NOT EXISTS Products( Lot_id INT PRIMARY KEY NOT NULL, company_id INT NOT NULL, product_id INT NOT NULL, Name VARCHAR(50) NOT NULL, Brand VARCHAR(50) NOT NULL, EPA VARCHAR(25) NULL, PHI INT NULL, REI INT NULL, Temp_Type VARCHAR(1) NULL, Temp INT NULL, FOREIGN KEY (company_id) REFERENCES Company(company_id));"
