@@ -49,7 +49,7 @@ def Login():
 				#To be re-define
 				session['Role'] = "Company"
 
-				return redirect('Company/Admin')
+				return redirect('Dashboard')
 	
 	
 	################################################################################################################
@@ -86,7 +86,8 @@ def Login():
 				
 				#To be re assing
 				session['Role'] = "employe";
-				return redirect('Employe')
+                                
+				return redirect('Dashboard')
 
 				
 		else: 
@@ -100,6 +101,48 @@ def Login():
 def Log_out():
 
 	return render_template('index.html')
+
+
+
+#This is for the admin dashboard
+@app.route('/Admin', methods=['Get', 'POST'])
+def administrator():
+     
+
+
+    return render_template('admin.html')
+
+
+@app.route('/products', methods=['GET', 'POST'])
+def products():
+    
+    return render_template('Products.html')
+
+
+
+#This function go to dashboard
+@app.route('/Dashboard', methods=['GET', 'POST'])
+def Dashboard():
+
+    if (session['loggedin'] == True):
+        name = ""
+        company_msg = False 
+        if (session['Role'] == "Company"):
+            
+            company_msg = True
+            name = session['Company_Name']
+
+
+        if (session['Role'] == "employe"):
+            # full name of user             
+            name = (session['First_Name'] + " " + session['Last_Name'])
+
+            company_msg = False
+
+        return render_template('Dashboard.html', company_msg= company_msg, username=name)
+
+
+
 
 ##############################
 #Recovery of account
