@@ -18,7 +18,7 @@ mYSQL = db_Msql.Initialize_Msql(app)
 # This function verifices the user account
 @app.route('/',  methods=['GET', 'POST'])
 def sign_in():
-    """ """
+    """  """
     if request.method == 'POST':
         FirstName = request.form['FirstName']
         LastName = request.form['LastName']
@@ -30,20 +30,15 @@ def sign_in():
         # zip_code = request.form['zip_code']
         Email = request.form['Email']
         Password = request.form['Password']
-        company_id = '1'
+        company_id = '12'
         Amount_Employes = '10'
 
         cursor = mYSQL.connection.cursor()
-        add_company(FirstName, LastName, CompanyName, CompanyRole, Email, Password, company_id, Amount_Employes, cursor)
-    return render_template('sign-up.html')
-
-def add_company(FirstName, LastName, CompanyName, CompanyRole, Email, Password, company_id, Amount_Employes, cursor):
-    """ """
-    if True:
-        cursor.execute("INSERT INTO Platform_abacrop.Company (FirstName, LastName, CompanyName, CompanyRole, Email, Password, company_id, Amount_Employes) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",(FirstName, LastName, CompanyName, CompanyRole, Email, Password, company_id, Amount_Employes))
+        cursor.execute("INSERT INTO Platform_abacrop.Company (FirstName, LastName, CompanyName, CompanyRole, Email, Password, company_id, Amount_Employes) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+                       (FirstName, LastName, CompanyName, CompanyRole, Email, Password, company_id, Amount_Employes))
+        mYSQL.connection.commit()
         return redirect(url_for('dashboard'))
-    else:
-        return render_template('sign-up.html')
+    return render_template('sign-up.html')
 
 
 @app.route('/Dashboard')
@@ -52,4 +47,4 @@ def dashboard():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=892, host='127.0.0.1')
+    app.run(debug=True, port=862, host='127.0.0.1')
