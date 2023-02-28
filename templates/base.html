@@ -58,7 +58,7 @@
 <body>
 {% block form %}
 
-    <form method="post" id="formProcessProduct" action="/">
+    <form method="post" id="formProcessProduct" action="/AddProduct">
         <input type="hidden" value="AddProduct" id="AgropekAction" name="AgropekAction" />
         <div class="row mt-3">
             <div class="col-lg-6 col-md-12">
@@ -128,7 +128,7 @@
         </div>
         <div class="row mt-3">
             <div class="col-12 text-center">
-                <a href="/Products" class="btn red-background text-white" onclick="showPageLoader(true);">Cancel</a>&nbsp;
+                <a href="/AddProducts" class="btn red-background text-white" onclick="showPageLoader(true);">Cancel</a>&nbsp;
                 <button type='submit' class="btn agropek-green text-white">Add Product</button>                
             </div>
         </div>

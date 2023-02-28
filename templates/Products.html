@@ -220,6 +220,14 @@
     </div>
 </div>
 <!--Modal: modalError-->
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+    <p>{{ message }}</p>
+{% endfor%}
+{% endif %}
+{% endwith %}
 <div id="mdb-preloader" class="flex-center rgba-white-strong" style="background-color:rgba(255,255,255,.7); display:none">
     <div class="preloader-wrapper active">
         <div class="spinner-layer spinner-blue-only">
@@ -331,12 +339,14 @@
                             </div></th></tr>
                     </tfoot>
                     
-                    <tbody>
+                    <tbody> 
+                        {% for Product in products %}
                         <tr role="row" class="odd">
                                     
-                            <td>Test </td>
-                            <td>Test</td>
-                            <td>Company, Demo</td>
+                            <td>{{Product.1}}</td>
+                            <td>{{Product.2}}</td>
+                            <td>{{Product.2}}</td>
+                            <td>{{Product.0}}</td>
                             <td>
                             <a href="/AddProduct" onclick="showPageLoader(true)">
                                 <i class="fas fa-plus fa-lg agropek-green z-depth-2 p-3 ml-3 mt-n3 rounded text-white add-button" >
@@ -344,6 +354,7 @@
                             </a>
                         </td>
                         </tr>
+                        {% endfor %}
                     </tbody>
                     
                 </table></div><div class="dataTables_scrollFoot" style="overflow: hidden; border: 0px none; width: 100%;"><div class="dataTables_scrollFootInner" style="width: 1470px; padding-right: 0px;"><table class="table table-hover dataTable" role="grid" style="margin-left: 0px; width: 1470px;" width="100%"><tfoot>
@@ -363,7 +374,6 @@
         <div class="top-nav-padding"></div>
     </div>
 </main>
-
 
 
 

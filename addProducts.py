@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, flash, url_for, session
 import db_Msql
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
@@ -13,7 +13,7 @@ app.secret_key = 'key'
 mYSQL = db_Msql.Initialize_Msql(app)
 
 
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/AddProduct', methods=['POST', 'GET'])
 def add_product():
     """ This function adds a product to the database using the POST request data, and renders the Products.html template on completion."""
 
@@ -32,6 +32,7 @@ def add_product():
         cursor.execute("INSERT INTO Platform_abacrop.Products (Name, Brand, ClassificationId, EPA, PHI, REI, Temperature, TemperatureTypeId) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
                        (name, brand, classificationId, epa, phi, rei, temperature, temperatureTypeId))
         mYSQL.connection.commit()
+        flash("Product Added")
         return render_template('Products.html')
     return render_template('base.html')
 
@@ -56,4 +57,4 @@ def add_product():
 #     print(product_classification)
 #     return product_classification
 if __name__ == '__main__':
-    app.run(debug=True, port=2566, host='127.0.0.1')
+    app.run(debug=True, port=501, host='127.0.0.1')
