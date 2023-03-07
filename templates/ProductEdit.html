@@ -58,7 +58,8 @@
 <body>
 {% block form %}
 
-    <form method="post" id="formProcessProduct" action="/AddProduct">
+    <form method="POST" id="formProcessProduct" action="/EditProduct/{{id}}">
+        {% set id = id%}
         <input type="hidden" value="AddProduct" id="AgropekAction" name="AgropekAction" />
         <div class="row mt-3">
             <div class="col-lg-6 col-md-12">
@@ -125,11 +126,14 @@
                 </select>
                 <label class="mdb-main-label">Measurement</label>
             </div>
+        </div> 
+        </div>
         </div>
         <div class="row mt-3">
             <div class="col-12 text-center">
-                <a href="/AddProducts" class="btn red-background text-white" onclick="showPageLoader(true);">Cancel</a>&nbsp;
-                <button type='submit' class="btn agropek-green text-white">Add Product</button>                
+                <a href="/" class="btn red-background text-white" onclick="showPageLoader(true);">Cancel</a>&nbsp;
+                <a href="/EditProdut/{{id}}" class="btn red-background text-white" onclick="showPageLoader(true);">Edit</a>&nbsp;
+                <button type='submit' class="btn agropek-green text-white">Edit Product</button>                 
             </div>
         </div>
     <input name="__RequestVerificationToken" type="hidden" value="CfDJ8I_ua8oIUYlBqCgPY0DBbA3_eqskkdwghWN8bVnysFTHRgVGrFNabfrLNoFoBGCRwpj-063iSm2-CuesTO0keZW0uWWTZRcLYcsdmnQ65IIpFrDomNU9k5N0soljyEsty1w-sCXXb9ZzF-4eCPVcskA" /></form>
