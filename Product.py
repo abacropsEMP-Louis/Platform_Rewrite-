@@ -22,7 +22,21 @@ def Products():
 
 
 @app.route('/EditProduct/<string:id>', methods=['POST', 'GET'])
-def EditProduct(id):
+def get_product(id):
+    """ This function in call when a user click on the edit button in the Products.html table. 
+        this will retrive all the data of the product, assined it to product_data. this will
+        be rendered in editProduct.html """
+    cursor = mYSQL.connection.cursor()
+    cursor.execute(
+        'select * from Platform_abacrop.Products WHERE productId = %s', (id,))
+    products_data = cursor.fetchall()
+    print(products_data)
+    return render_template('editProduct.html', product=products_data[0])
+
+
+@app.route('/updateProduct/<string:id>', methods=["POST"])
+def update_product(id):
+    """ Once the user submit the form all the data will be resived and then updated to the data base"""
     if request.method == 'POST':
         name = request.form['Product.Name']
         brand = request.form['Product.Brand']
@@ -36,23 +50,22 @@ def EditProduct(id):
         cursor = mYSQL.connection.cursor()
         cursor.execute("""
                UPDATE Platform_abacrop.Products SET
-               Name = %s, 
-               Brand = %s, 
-               ClassificationId = %s, 
-               EPA = %s, 
+               Name = %s,
+               Brand = %s,
+               ClassificationId = %s,
+               EPA = %s,
                PHI = %s,
-               REI = %s, 
-               Temperature = %s, 
+               REI = %s,
+               Temperature = %s,
                TemperatureTypeId = %s
                WHERE productId = %s
                """, (name, brand, classificationId, epa, phi, rei, temperature, temperatureTypeId, id))
         mYSQL.connection.commit()
-        flash("Product deleted")
+        flash("Product edited")
         return Products()
-    return render_template('ProductEdit.html')
 
 
-@app.route('/AddProduct', methods=['POST', 'GET'])
+@ app.route('/AddProduct', methods=['POST', 'GET'])
 def add_product():
     """ This function adds a product to the database using the POST request data, and renders the Products.html template on completion."""
 
@@ -79,4 +92,4 @@ def add_product():
 
 
 if __name__ == "__main__":
-    app.run(port=5010, host='127.0.0.1', debug=True)
+    app.run(port=5014, host='127.0.0.1', debug=True)
