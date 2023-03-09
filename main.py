@@ -112,12 +112,132 @@ def administrator():
 
     return render_template('admin.html')
 
-
+############### Product ######################
 @app.route('/products', methods=['GET', 'POST'])
 def products():
-    
-    return render_template('Products.html')
+    if (session['Role'] == "Company"):
 
+        return render_template('Products.html', Company_Name=session['Company_Name'])
+    else:
+        return redirect('Dashboard')
+    
+
+############# AddProduct ##################
+@app.route('/AddProduct', methods=['GET', 'POST'])
+def AddProducts():
+    msg = False
+    name = ""   
+
+    cursor = mYSQL.connection.cursor(MySQLdb.cursors.DictCursor)
+    
+   
+
+    #ARRAY OF CLASSIFICATION VALUES 
+    classifications=['None','Semillas','Fertilizantes', "Control de plagas","Insumos de mantenimiento","Uso humano"]
+
+    # This is the classification value of the types of product that the user can create
+    clasification_value = request.form.get('Classification')
+    print("ClasificationID: " + str(clasification_value))
+    
+    #################### INPUT ( NAME & Brand ) ######################
+    # THIS INPUT IS ONLY ENABLE WHEN THE USER ENTERS THE CLASSIFICATION clasification_value THAT HE WANT TO USE 
+    Product_Name = request.form.get('Product_Name')
+    print("Priduct Name: " + str(Product_Name))
+    
+    Product_Brand = request.form.get('Product_Brand')
+    print("Product Brand: " + str(Product_Brand))
+    
+    #################### INPUT ( NAME & Brand ) ######################
+
+
+    #################### INPUT ( EPA | PHI | REI ) ######################
+    
+    #EPA INTPUT
+    EPA = request.form.get('Product.Epa')
+    print("EPA: " + str(EPA))
+    PHI = request.form.get('Product.Phi')
+    print("PHI: " + str(PHI))
+    REI = request.form.get('Product.Rei')
+    print("REI: " + str(REI))
+    #################### INPUT ( EPA | PHI | REI ) ######################
+
+
+    #################### INPUT (TEMPETURE & MEASIREMENT) ###############
+
+    Storage_temp = request.form.get('Product.TemperatureStorage')
+
+    #TEMPETURE MEASUREMENT
+    Mesurment_temp = request.form.get('Product.TemperatureTypeId')
+
+    print(str("Storage temp: ")  + str(Storage_temp) + str(Mesurment_temp))
+
+    #################### INPUT (TEMPETURE & MEASIREMENT) ###############
+
+
+    # Option for the dropdown (Semillas)
+    if (clasification_value == "1"):
+        
+        # JINJAX MESSAGE 
+        msg = True
+
+        #CLASSIFICATION NAME
+        name = classifications[1]
+        #if (Storage_temp != None):
+        print("successfull data ")
+        #    db_Msql.add_product(1,Product_Name, Product_Brand, product_id=1, company_id=session['id'], EPA="Test", PHI="Test", REI="Test", Temp_type=Mesurment_temp, Temp=Storage_temp, cursor=cursor, mYSQL=mYSQL)
+        return render_template('AddProductqty.html', msg=msg, name=name, value=clasification_value)
+
+
+    # Option for the dropdown (Semillas)
+    if (clasification_value == "2"):
+        
+        # JINJAX MESSAGE    
+        msg = True
+
+        #CLASSIFICATION NAME 
+        name = classifications[2]
+
+        return render_template('AddProductqty.html', msg=msg, name=name, value=clasification_value)
+    
+    #Option for the dropdown (Control de plagas)
+    if (clasification_value == "3"):
+        
+        #JINJAX MESSAGE 
+        msg= True
+
+        #CLASSIFICATION NAME
+        name = classifications[3]
+
+        return render_template('AddProductqty.html', msg=msg, name=name, value=clasification_value)
+
+    if (clasification_value == "4"):
+        # JINJAX MESSAGE
+        msg = True
+
+        #CLASSIFICATION NAME
+        name = classifications[4]
+
+        return render_template('AddProductqty.html', msg=msg, name=name, value=clasification_value)
+
+
+    if (clasification_value == "5"):
+        
+        #JINJAX MESSAGE
+        msg = True
+        #CLASSIFICATION NAME
+        name = classifications[5]
+        
+        return render_template('AddProductqty.html', msg=msg, name=name, value=clasification_value)
+    
+    return render_template('AddProductqty.html', msg=msg, name=name, value=clasification_value)
+
+
+
+############# AddProduct ##################
+
+
+
+############## Product ####################
 
 
 #This function go to dashboard
@@ -213,6 +333,7 @@ def Validate_email():
             print(" Invalide key ")
 
     return render_template('Recovery/validator_email.html', account_found=session["account"], email= str(session["email"]), Valid_code=Valid_code) 
+
 
 @app.route('/new_password', methods=['GET' , 'POST'])
 def New_password():
