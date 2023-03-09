@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html class="" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Products - Abacrop</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='img_src/abacrop_logo.png') }}"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='img_src/abacrop_logo.png') }}"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='img_src/abacrop_logo.png') }}"/>
+
+
+    
+
+    
+    <link rel="stylesheet" href="{{url_for('static', filename='font/fontawesome/css/all.css') }}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/mdb.min.css') }}" />
+
+    <link rel="stylesheet" href="{{url_for('static',filename='css/dataTables.bootstrap4.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/select.bootstrap4.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/buttons.bootstrap4.css') }}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/mdb-file-upload.min.css') }}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/flag-min.css') }}">
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/cards-extended.min.css') }}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/stepper.min.css') }}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/abaxto.css') }}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/agropek.css') }}" />
+    
+
+    
+
+    
+    <script src="{{url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+    <script src="{{url_for('static', filename='js/popper.min.js') }}"></script>
+    <script src="{{url_for('static', filename='js/addons-pro/stepper.min.js') }}"></script>
+
+    <script src="{{url_for('static', filename='js/datatables.js') }}"></script>
+    <script src="{{url_for('static',filename='js/dataTables.bootstrap4.js')}}"></script>
+    <script src="{{url_for('static', filename='js/select.bootstrap4.js') }}"></script>
+    <script src="{{url_for('static', filename='js/buttons.bootstrap4.js') }}"></script>
+
+    <script src="{{url_for('static', filename='js/bootstrap.js')}}"></script>
+    <script src="{{url_for('static', filename='js/mdb.js') }}"></script>
+        
+        <style type="text/css">/* Chart.js */
+@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}
+        </style>
+        
+        <script src="{{ url_for('static', filename='js/session.js') }}"></script>
+    
+
+        <link rel="stylesheet" href="{{url_for('static', filename='js/cropper.css') }}" />
+        <script src="{{url_for('static', filename='js/cropper.js') }}"></script>
+        <script src="{{url_for('static', filename='js/jquery-cropper.js') }}"></script>
+        <script src="{{url_for('static', filename='js/site.js') }}"></script>
+
+
+</head>
+<body aria-busy="true">
+    <!--partial name="_CookieConsentPartial" /-->
+    
+
+<!-- Navbar -->
+
+<!--Main Navigation-->
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar agropek-yellow-transparent top-nav-collapse">
+    <div class="container">
+        <a class="navbar-brand font-weight-bold text-agropek-blue" href="#">
+            <strong>ABACROP</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7" aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-agropek-blue font-weight-bold waves-effect waves-light" href="#">
+                        <span>
+                            Hello {! User Name }
+                        </span>
+                    </a>
+                </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-agropek-blue waves-effect waves-light" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administration</a>
+                        <div class="dropdown-menu colorful-select dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item waves-effect waves-light" href="/Admin">Administration</a>
+                            <hr class="dropdown-divider">
+                                <a class="dropdown-item waves-effect waves-light" href="/Comp">Companies</a>
+                            <a class="dropdown-item waves-effect waves-light" href="/Users">Users</a>
+                            <a class="dropdown-item waves-effect waves-light" href="/crop_types">Crop Types</a>
+                            <a class="dropdown-item waves-effect waves-light" href="/locations">Locations</a>
+                            <a class="dropdown-item waves-effect waves-light" href="/products">Products</a>
+                            <a class="dropdown-item waves-effect waves-light" href="/equipment_area">Equipment &amp; Work Areas</a>
+                            <a class="dropdown-item waves-effect waves-light" href="/plagues">Plagues</a>
+                            <a class="dropdown-item waves-effect waves-light" href="/deficiencies">Deficiencies</a>
+                            <a class="dropdown-item waves-effect waves-light" href="/reports">Reports</a>
+                        </div>
+                    </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-agropek-blue waves-effect waves-light" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dashboard</a>
+                    <div class="dropdown-menu colorful-select dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item waves-effect waves-light" href="/Dashboard">Dashboard</a>
+                        <hr class="dropdown-divider">
+                        <a class="dropdown-item waves-effect waves-light" href="/crops">Create New Crop</a>
+                        <a class="dropdown-item waves-effect waves-light" href="/daily_maintenance">Daily Maintenance</a>
+                        <a class="dropdown-item waves-effect waves-light" href="/sanitary">Sanitary Intervention</a>
+                        <a class="dropdown-item waves-effect waves-light" href="/foliar">Foliar Intervention</a>
+                        <a class="dropdown-item waves-effect waves-light" href="/general">General Maintenance</a>
+                        <a class="dropdown-item waves-effect waves-light" href="/root">Root Application</a>
+                    </div>
+                </li>
+
+            </ul>
+            <ul class="navbar-nav right-aligned">
+                <li class="nav-item">
+                    <a class="nav-link text-agropek-blue font-weight-bold waves-effect waves-light" href="/Home/Logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!--Main Navigation-->
+
+<!-- /.Navbar -->
+
+
+
+<!--Modal: modelInformation-->
+<div class="modal fade right" id="modalInformation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="true">
+    <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <p class="heading">
+                    <strong>Information Message</strong>
+                </p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">×</span>
+                </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-3">
+                        <p></p>
+                        <p class="text-center">
+                            <i class="fas fa-info fa-4x"></i>
+                        </p>
+                    </div>
+
+                    <div class="col-9">
+                        <p>
+                            <span id="spanInformationMessage"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer flex-center">
+                <a type="button" class="btn btn-outline-charcoal-light waves-effect" href="#" data-dismiss="modal">Cerrar</a>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+<!--Modal: modalInformation-->
+<!--Modal: modalError-->
+<div class="modal fade right" id="modalError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" style="z-index:1052;">
+    <div class="modal-dialog modal-dialog-centered modal-notify modal-info" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header red-background">
+                <p class="heading">
+                    <strong>Error Message</strong>
+                </p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">×</span>
+                </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-3">
+                        <p></p>
+                        <p class="text-center">
+                            <i class="fas fa-times fa-4x animated rotateIn red-text"></i>
+                        </p>
+                    </div>
+
+                    <div class="col-9">
+                        <p>
+                            <span id="spanErrorMessage"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer flex-center">
+                <a type="button" class="btn red-background waves-effect text-white" href="#" data-dismiss="modal">Cerrar</a>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+<!--Modal: modalError-->
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+    <p>{{ message }}</p>
+{% endfor%}
+{% endif %}
+{% endwith %}
+<div id="mdb-preloader" class="flex-center rgba-white-strong" style="background-color:rgba(255,255,255,.7); display:none">
+    <div class="preloader-wrapper active">
+        <div class="spinner-layer spinner-blue-only">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main>
+    <div class="container">
+        <div class="top-nav-padding"></div>
+        <form method="post" id="formEditProduct" action="/Products/EditProduct">
+            <input type="hidden" id="hideProductId" name="Product.ProductId" value="">
+        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8JZgfO30OD1CvkCY7JLJD_xBvQhNur97LjUzyibiXYUMOjJSRw0UTmUdHCKB63KaUTc81S3JTPl5gX2IMLCrZ0rmE6_79JxnicEP9RpV67Pp8nU0Wby32jduvWop_K1sFw5V8YjwhxpKePUBMwjo9SU"></form>
+        <form method="post" id="formProductQuantity" action="/Products/AddProductQuantity">
+            <input type="hidden" id="hideProductIdForQUantity" name="Product.ProductId" value="">
+        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8JZgfO30OD1CvkCY7JLJD_xBvQhNur97LjUzyibiXYUMOjJSRw0UTmUdHCKB63KaUTc81S3JTPl5gX2IMLCrZ0rmE6_79JxnicEP9RpV67Pp8nU0Wby32jduvWop_K1sFw5V8YjwhxpKePUBMwjo9SU"></form>
+
+        <!-- Header area -->
+        <div class="row mt-lg-4">
+            <div class="col-lg-12 col-md-12 mb-4">
+
+                <!-- Admin card -->
+                <div class="card mt-3">
+                    <div>
+                        <i class="fas fa-prescription-bottle fa-lg agropek-green z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
+                    </div>
+
+                    <div class="card-body pt-0">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 mb-4 pt-3">
+                                <h4 class="font-weight-bold mb-0">Products</h4>
+                                <h2 class="font-weight-bold mb-0 text-agropek-blue">Demo Company</h2>
+                            </div>
+                            <div class="col-lg-8 col-md-6 pt-3">
+                                <div>
+                                    <form method="post" id="formUpdateCompany" action="/Products/UpdateCompany">
+                                        <input type="hidden" value="Index" id="AgropekAction" name="AgropekAction">
+                                        <div class="select-wrapper mdb-select md-form colorful-select dropdown-primary list-companies"><span class="caret">▼</span><input type="text" class="select-dropdown form-control" readonly="true" required="false" data-activates="select-options-0acd301b-9190-47b6-a26d-73c783682fab" value="Demo Company"><ul id="select-options-0acd301b-9190-47b6-a26d-73c783682fab" class="dropdown-content select-dropdown w-100 "><li class="   "><span class="filtrable"> Abacrop LLC   </span></li><li class="active"><span class="filtrable"> Demo Company   </span></li></ul><select class="mdb-select md-form colorful-select dropdown-primary list-companies initialized" data-val="true" data-val-required="The CompanyId field is required." id="Company_CompanyId" name="Company.CompanyId">
+                                                    <option> {!Comapany Name}</option>
+                                                    
+                                        </select></div>
+                                        <label class="mdb-main-label active">Companies</label>
+                                    <input name="__RequestVerificationToken" type="hidden" value="CfDJ8JZgfO30OD1CvkCY7JLJD_xBvQhNur97LjUzyibiXYUMOjJSRw0UTmUdHCKB63KaUTc81S3JTPl5gX2IMLCrZ0rmE6_79JxnicEP9RpV67Pp8nU0Wby32jduvWop_K1sFw5V8YjwhxpKePUBMwjo9SU"></form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Admin card -->
+
+            </div>
+            <!--Grid column-->
+        </div>
+        <!-- Header area -->
+
+        <div class="row mt-3">
+            <a href="/AddProduct" onclick="showPageLoader(true)"><i class="fas fa-plus fa-lg agropek-green z-depth-2 p-3 ml-3 mt-n3 rounded text-white"></i></a>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-12">
+                <div id="paginationSimpleNumbers_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="paginationSimpleNumbers_length"><label>Show <select name="paginationSimpleNumbers_length" aria-controls="paginationSimpleNumbers" class="custom-select custom-select-sm form-control form-control-sm"><option value="10" selected="selected">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="paginationSimpleNumbers_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="paginationSimpleNumbers"></label></div></div></div><div class="row"><div class="col-sm-12"><div class="dataTables_scroll"><div class="dataTables_scrollHead" style="overflow: hidden; position: relative; border: 0px none; width: 100%;"><div class="dataTables_scrollHeadInner" style="box-sizing: content-box; width: 1470px; padding-right: 0px;"><table class="table table-hover dataTable" role="grid" style="margin-left: 0px; width: 1470px;" width="100%"><thead>
+                        <tr role="row"><th class="th-sm sorting" tabindex="0" aria-controls="paginationSimpleNumbers" rowspan="1" colspan="1" style="width: 508.55px;" aria-label="
+                                Product Name
+                            : activate to sort column ascending">
+                                Product Name
+                            </th><th class="th-sm sorting" tabindex="0" aria-controls="paginationSimpleNumbers" rowspan="1" colspan="1" style="width: 333.733px;" aria-label="
+                                Product Brand
+                            : activate to sort column ascending">
+                                Product Brand
+                            </th><th class="th-sm sorting" tabindex="0" aria-controls="paginationSimpleNumbers" rowspan="1" colspan="1" style="width: 100.867px;" aria-label="
+                                User
+                            : activate to sort column ascending">
+                                User
+                            </th><th class="th-sm sorting" tabindex="0" aria-controls="paginationSimpleNumbers" rowspan="1" colspan="1" style="width: 100.85px;" aria-label="
+                                Add
+                            : activate to sort column ascending">
+                                Add
+                            </th>
+                            </th><th class="th-sm sorting" tabindex="0" aria-controls="paginationSimpleNumbers" rowspan="1" colspan="1" style="width: 100.85px;" aria-label="
+                                Add
+                            : activate to sort column ascending">
+                                Edit
+                            </th></tr>
+                    </thead></table></div></div><div class="dataTables_scrollBody" style="position: relative; overflow: auto; max-height: 320px; height: 320px; width: 100%;"><table id="paginationSimpleNumbers" class="table table-hover dataTable" role="grid" aria-describedby="paginationSimpleNumbers_info" style="width: 100%;" width="100%"><thead>
+                        <tr role="row" style="height: 0px;"><th class="th-sm sorting" aria-controls="paginationSimpleNumbers" rowspan="1" colspan="1" style="width: 508.55px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;"><div class="dataTables_sizing" style="height: 0px; overflow: hidden;">
+                                Product Name
+                            </div></th><th class="th-sm sorting" aria-controls="paginationSimpleNumbers" rowspan="1" colspan="1" style="width: 333.733px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;"><div class="dataTables_sizing" style="height: 0px; overflow: hidden;">
+                                Product Brand
+                            </div></th><th class="th-sm sorting" aria-controls="paginationSimpleNumbers" rowspan="1" colspan="1" style="width: 100.867px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;"><div class="dataTables_sizing" style="height: 0px; overflow: hidden;">
+                                User
+                            </div></th><th class="th-sm sorting" aria-controls="paginationSimpleNumbers" rowspan="1" colspan="1" style="width: 100.85px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;"><div class="dataTables_sizing" style="height: 0px; overflow: hidden;">
+                                Add
+                            </div></th>
+                            </div></th><th class="th-sm sorting" aria-controls="paginationSimpleNumbers" rowspan="1" colspan="1" style="width: 100.85px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;"><div class="dataTables_sizing" style="height: 0px; overflow: hidden;">
+                                Edit
+                            </div></th></tr>
+                    </thead><tfoot>
+                        <tr style="height: 0px;"><th class="th-sm" rowspan="1" colspan="1" style="padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px; width: 526.55px;"><div class="dataTables_sizing" style="height: 0px; overflow: hidden;">
+                                Product Name
+                            </div></th><th class="th-sm" rowspan="1" colspan="1" style="padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px; width: 333.733px;"><div class="dataTables_sizing" style="height: 0px; overflow: hidden;">
+                                Product Brand
+                            </div></th><th class="th-sm" rowspan="1" colspan="1" style="padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px; width: 100.867px;"><div class="dataTables_sizing" style="height: 0px; overflow: hidden;">
+                                User
+                            </div></th><th class="th-sm" rowspan="1" colspan="1" style="padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px; width: 100.85px;"><div class="dataTables_sizing" style="height: 0px; overflow: hidden;">
+                                Add
+                            </div></th>
+                            </div></th><th class="th-sm" rowspan="1" colspan="1" style="padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px; width: 100.85px;"><div class="dataTables_sizing" style="height: 0px; overflow: hidden;">
+                                Edit
+                            </div></th></tr>
+                    </tfoot>
+                    
+                    <tbody> 
+                        <!-- #############################Forloop render#############################################  -->
+                        {% for Product in products %}
+                            <!-- el programa de edit funciona con una variable que es un productId en mi base de datos
+                                 Cada int es auto generado.     
+                            -->
+                            {% set id = Product.8%}
+                        <tr role="row" class="odd">
+
+                            <!-- Product Name -->
+                            <td>{{Product.0}}</td>
+                            <!-- Brand Name -->
+                            <td>{{Product.1}}</td>
+                            <!-- User name, that created the product-->
+                            <!-- Hay que editar esta ultima en la base de datos
+                                 Ten en cuenta que lo que te da es un tupple, 
+                                 adaptalo a tu base de datos y el orden de los valore
+                            -->
+                            <td>{{Product.2}}</td>
+                            <td>
+                            <a href="/AddProducts" onclick="showPageLoader(true)">
+                                <i class="fas fa-plus fa-lg agropek-green z-depth-2 p-3 ml-3 mt-n3 rounded text-white add-button" >
+                                </i>
+                            </a>
+                            </td>
+                            <td>
+                                <!-- Este boton es hace referencia a la variable productId para poder editar el producto especifico en
+                                     la base de datos. Creo que podiras usar otra variable. La cosa es que sea unica
+                                     y sirva para identificar a un producto perse.
+                                -->
+                            <a href="/EditProduct/{{id}}" class="btn red-background text-white z-depth-2 p-3 ml-3 mt-n3 rounded" onclick="showPageLoader(true);">Edit</a>&nbsp;
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    
+                </table></div><div class="dataTables_scrollFoot" style="overflow: hidden; border: 0px none; width: 100%;"><div class="dataTables_scrollFootInner" style="width: 1470px; padding-right: 0px;"><table class="table table-hover dataTable" role="grid" style="margin-left: 0px; width: 1470px;" width="100%"><tfoot>
+                        <tr><th class="th-sm" rowspan="1" colspan="1" style="width: 526.55px;">
+                                Product Name
+                            </th><th class="th-sm" rowspan="1" colspan="1" style="width: 333.733px;">
+                                Product Brand
+                            </th><th class="th-sm" rowspan="1" colspan="1" style="width: 100.867px;">
+                                User
+                            </th><th class="th-sm" rowspan="1" colspan="1" style="width: 100.85px;">
+                                Add
+                            </th>
+                            </th><th class="th-sm" rowspan="1" colspan="1" style="width: 100.85px;">
+                                Edit
+                            </th></tr>
+                    </tfoot></table></div></div></div></div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="paginationSimpleNumbers_info" role="status" aria-live="polite">Showing 1 to 6 of 6 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="paginationSimpleNumbers_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="paginationSimpleNumbers_previous"><a href="#" aria-controls="paginationSimpleNumbers" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="paginationSimpleNumbers" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item next disabled" id="paginationSimpleNumbers_next"><a href="#" aria-controls="paginationSimpleNumbers" data-dt-idx="2" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div>
+            </div>
+        </div>
+
+        <div class="top-nav-padding"></div>
+    </div>
+</main>
+
+
+
+
+    
+    
+
+
+
+</body>
+</html>

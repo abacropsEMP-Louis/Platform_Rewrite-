@@ -1,0 +1,118 @@
+﻿.agropek-green {
+    background-color: #17A07A !important;
+}
+
+.text-agropek-green {
+    color: #17A07A !important;
+}
+
+.agropek-green-transparent {
+    background-color: #17A07A !important;
+    opacity: 0.95;
+}
+
+.btn.agropek-green {
+    background-color: #6E0177 !important;
+}
+
+i.agropek-green {
+    background-color: #6E0177 !important;
+}
+
+.agropek-yellow {
+    background-color: #BACD14 !important;
+}
+
+.agropek-yellow-transparent {
+    background-color: #BACD14 !important;
+    opacity: 0.95;
+}
+
+.agropek-blue {
+    background-color: #6E0177 !important;
+}
+
+.text-agropek-blue {
+    color: #6E0177 !important;
+}
+
+.Short {
+    width: 100%;
+    background-color: #dc3545;
+    margin-top: 5px;
+    height: 3px;
+    color: #dc3545;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.Weak {
+    width: 100%;
+    background-color: #ffc107;
+    margin-top: 5px;
+    height: 3px;
+    color: #ffc107;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.Good {
+    width: 100%;
+    background-color: #28a745;
+    margin-top: 5px;
+    height: 3px;
+    color: #28a745;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.Strong {
+    width: 100%;
+    background-color: #d39e00;
+    margin-top: 5px;
+    height: 3px;
+    color: #d39e00;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.form-check-input[type=checkbox]+label:before, 
+.form-check-input[type=checkbox]:not(.filled-in) + label:after, 
+label.btn input[type=checkbox] + label:before, 
+label.btn input[type=checkbox]:not(.filled-in) + label:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    z-index: 0;
+    border: 2px solid #FFFFFF;
+    border-radius: 1px;
+    margin-top: 3px;
+    transition: .2s;
+}
+
+.form-check-input[type=checkbox]:checked + label:before, label.btn input[type=checkbox]:checked + label:before {
+    top: -4px;
+    left: -5px;
+    width: 12px;
+    height: 1.375rem;
+    border-top: 2px solid transparent;
+    border-left: 2px solid transparent;
+    border-right: 2px solid #FFFFFF;
+    border-bottom: 2px solid #FFFFFF;
+    transform: rotate( 40deg );
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform-origin: 100% 100%;
+}
+
+.agropek-hover:hover {
+    background-color: #ECECEC !important;
+    color: white;
+}
+
+.form-check-input:disabled ~ .form-check-label {
+    color: #FFFFFF;
+}

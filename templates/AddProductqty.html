@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Add Product Quantity - Abacrop</title>
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='img_src/abacrop_logo.png') }}"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='img_src/abacrop_logo.png') }}"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='img_src/abacrop_logo.png') }}"/>
+
+
+
+    <link rel="stylesheet" href="{{url_for('static', filename='font/fontawesome/css/all.css') }}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/mdb.min.css') }}" />
+
+    <link rel="stylesheet" href="{{url_for('static',filename='css/dataTables.bootstrap4.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/select.bootstrap4.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/buttons.bootstrap4.css') }}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/mdb-file-upload.min.css') }}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/flag-min.css') }}">
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/cards-extended.min.css') }}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/stepper.min.css') }}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/abaxto.css') }}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/agropek.css') }}" />
+
+    
+
+   
+
+    <script src="{{url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+    <script src="{{url_for('static', filename='js/popper.min.js') }}"></script>
+    <script src="{{url_for('static', filename='js/addons-pro/stepper.min.js') }}"></script>
+
+    <script src="{{url_for('static', filename='js/datatables.js') }}"></script>
+    <script src="{{url_for('static',filename='js/dataTables.bootstrap4.js')}}"></script>
+    <script src="{{url_for('static', filename='js/select.bootstrap4.js') }}"></script>
+    <script src="{{url_for('static', filename='js/buttons.bootstrap4.js') }}"></script>
+
+    <script src="{{url_for('static', filename='js/bootstrap.js')}}"></script>
+    <script src="{{url_for('static', filename='js/mdb.js') }}"></script>
+
+
+    <script src="{{url_for('static', filename='js/session.js') }}"></script>
+    
+
+    <link rel="stylesheet" href="{{url_for('static', filename='js/cropper.css') }}" />
+    <script src="{{url_for('static', filename='js/cropper.js') }}"></script>
+    <script src="{{url_for('static', filename='js/jquery-cropper.js') }}"></script>
+    <script src="{{url_for('static', filename='js/site.js') }}"></script>
+
+
+</head>
+<body>
+    <!--partial name="_CookieConsentPartial" /-->
+    
+
+<!-- Navbar -->
+
+<!--Main Navigation-->
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar agropek-yellow-transparent">
+    <div class="container">
+        <a class="navbar-brand font-weight-bold text-agropek-blue" href="#">
+            <strong>ABACROP</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7"
+                aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-agropek-blue font-weight-bold" href="#">
+                        <span>
+                            Hello Louis!
+                        </span>
+                    </a>
+                </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-agropek-blue" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administration</a>
+                        <div class="dropdown-menu colorful-select dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/Admin">Administration</a>
+                            <hr class="dropdown-divider" />
+                                <a class="dropdown-item" href="/Comp">Companies</a>
+                            <a class="dropdown-item" href="/Users">Users</a>
+                            <a class="dropdown-item" href="/crop_types">Crop Types</a>
+                            <a class="dropdown-item" href="/locations">Locations</a>
+                            <a class="dropdown-item" href="/products">Products</a>
+                            <a class="dropdown-item" href="/equipment_area">Equipment &amp; Work Areas</a>
+                            <a class="dropdown-item" href="/plagues">Plagues</a>
+                            <a class="dropdown-item" href="/deficiencies">Deficiencies</a>
+                            <a class="dropdown-item" href="/reports">Reports</a>
+                        </div>
+                    </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-agropek-blue" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dashboard</a>
+                    <div class="dropdown-menu colorful-select dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="/Dashboard">Dashboard</a>
+                        <hr class="dropdown-divider" />
+                        <a class="dropdown-item" href="/crops">Create New Crop</a>
+                        <a class="dropdown-item" href="/daily_maintenance">Daily Maintenance</a>
+                        <a class="dropdown-item" href="/sanitary">Sanitary Intervention</a>
+                        <a class="dropdown-item" href="/foliar">Foliar Intervention</a>
+                        <a class="dropdown-item" href="/general">General Maintenance</a>
+                        <a class="dropdown-item" href="/root">Root Application</a>
+                    </div>
+                </li>
+
+            </ul>
+            <ul class="navbar-nav right-aligned">
+                <li class="nav-item">
+                    <a class="nav-link text-agropek-blue font-weight-bold" href="/Home/Logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!--Main Navigation-->
+
+<!-- /.Navbar -->
+
+
+
+<!--Modal: modelInformation-->
+<div class="modal fade right" id="modalInformation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true" data-backdrop="true">
+    <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <p class="heading">
+                    <strong>Information Message</strong>
+                </p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-3">
+                        <p></p>
+                        <p class="text-center">
+                            <i class="fas fa-info fa-4x"></i>
+                        </p>
+                    </div>
+
+                    <div class="col-9">
+                        <p>
+                            <span id="spanInformationMessage"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer flex-center">
+                <a type="button" class="btn btn-outline-charcoal-light waves-effect" href="#" data-dismiss="modal">Cerrar</a>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+<!--Modal: modalInformation-->
+<!--Modal: modalError-->
+<div class="modal fade right" id="modalError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" style="z-index:1052;">
+    <div class="modal-dialog modal-dialog-centered modal-notify modal-info" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header red-background">
+                <p class="heading">
+                    <strong>Error Message</strong>
+                </p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-3">
+                        <p></p>
+                        <p class="text-center">
+                            <i class="fas fa-times fa-4x animated rotateIn red-text"></i>
+                        </p>
+                    </div>
+
+                    <div class="col-9">
+                        <p>
+                            <span id="spanErrorMessage"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer flex-center">
+                <a type="button" class="btn red-background waves-effect text-white" href="#" data-dismiss="modal">Cerrar</a>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+<!--Modal: modalError-->
+<div id="mdb-preloader" class="flex-center rgba-white-strong" style="background-color:rgba(255,255,255,.7); display:none">
+    <div class="preloader-wrapper active">
+        <div class="spinner-layer spinner-blue-only">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main>
+    <div class="container">
+        <div class="top-nav-padding"></div>
+
+        <!-- Header area -->
+        <div class="row mt-lg-4">
+            <div class="col-lg-12 col-md-12 mb-4">
+
+                <!-- Admin card -->
+                <div class="card mt-3">
+                    <div>
+                        <i class="fa fa-chart-bar fa-lg agropek-green z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
+                    </div>
+
+                    <div class="card-body pt-0">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 mb-4 pt-3">
+                                <h4 class="font-weight-bold mb-0">Add Product Quantity</h4>
+                                <h2 class="font-weight-bold mb-0 text-agropek-blue">Demo Company</h2>
+                            </div>
+                            <div class="col-lg-8 col-md-6 pt-3">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Admin card -->
+
+            </div>
+            <!--Grid column-->
+        </div>
+        <!-- Header area -->
+        <form method="post" id="formProcessProduct" action="/">
+            <input type="hidden" value="AddProductQuantity" id="AgropekAction" name="AgropekAction" />
+            <input type="hidden" value="1" id="Product_ProductId" name="Product.ProductId" />
+            <div class="row mt-3">
+                <div class="col-12">
+                    <h3 class="font-weight-bold mb-0">Aceite de tomillo</h3>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-lg-3 col-md-12">
+                    <div class="md-form form-group">
+                        <input type="number" class="form-control text-field product-amount" id="form-product-amount" placeholder="Product Amount" required data-val="true" data-val-number="The field Amount must be a number." data-val-required="The Amount field is required." name="ProductQuantity.Amount" value="">
+                        <label for="form-product-amount" class="label-field">Product Amount</label>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-12">
+                    <select class="mdb-select md-form colorful-select dropdown-primary history-temperature-type" data-val="true" data-val-required="The MeasurementId field is required." id="ProductQuantity_MeasurementId" name="ProductQuantity.MeasurementId">
+                            <option value="16">Cubic Foot (cu ft)</option>
+                            <option value="17">Cubic Meter (cu mt)</option>
+                            <option value="10">Cup (c)</option>
+                            <option value="18">Each / Unit</option>
+                            <option value="11">Fluid Ounce (fl oz)</option>
+                            <option value="7">Gallon (gl)</option>
+                            <option value="3">Gram (gr)</option>
+                            <option value="2">Kilogram (kg)</option>
+                            <option value="14">Liter (lt)</option>
+                            <option value="1">Metric Ton (MT)</option>
+                            <option value="4">Miligram (mg)</option>
+                            <option value="15">Milliliter (ml)</option>
+                            <option value="6">Ounce (oz)</option>
+                            <option value="9">Pint (pt)</option>
+                            <option value="5">Pound (lb)</option>
+                            <option value="8">Quart (qt)</option>
+                            <option value="12">Tablespoon (tbsp)</option>
+                            <option value="13">Teaspoon (tsp)</option>
+                    </select>
+                    <label class="mdb-main-label">Measurement</label>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-lg-3 col-md-12">
+                    <div class="md-form form-group">
+                        <input type="number" class="form-control text-field product-price" id="form-product-price" placeholder="Product Price US$" required data-val="true" data-val-number="The field Price must be a number." data-val-required="The Price field is required." name="ProductQuantity.Price" value="">
+                        <label for="form-product-price" class="label-field">Product Price US$</label>
+                    </div>
+                </div>
+                </div>
+
+            <div class="row mt-3">
+                <div class="col-12 text-center">
+                    <a href="/products" class="btn red-background text-white" onclick="showPageLoader(true);">Cancel</a>&nbsp;
+                    <button type='submit' class="btn agropek-green text-white">Add Product Quantity</button> 
+                </div>
+            </div>
+        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8JZgfO30OD1CvkCY7JLJD_wGEXvbsUMl7Pt-NtvXau7uoQs9plFCU-NCiu26A2JxVPjYu9f3DxrLVlBalh88YT_euX2EXPOH3NSP-S9Hv0bKzRIkTUqF_Q-_a3WrcF4BbLpupbfiBLgWReO7ufjbLRc" /></form>
+        <div class="top-nav-padding"></div>
+    </div>
+</main>
+
+
+
+
+</body>
+</html>
