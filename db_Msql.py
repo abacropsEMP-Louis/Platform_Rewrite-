@@ -73,3 +73,42 @@ def Update_Password(Email, New_Password, cursor, mYSQL):
 		cursor.execute('UPDATE Company set Password = %s WHERE Email = %s', (New_Password, Email,))
 		#Commit the execute command
 		mYSQL.connection.commit()
+
+
+
+
+######### PRODUCTS SECTION ############
+
+
+#######################################
+#		  Find Lot_by_id              #
+#######################################
+
+def find_lot_by_company(company_id, cursor):
+	cursor.execute('SELECT * FROM Products WHERE company_id = %s' , (company_id, ))
+
+	company_LOTS = cursor.fetchall()
+
+	print( str(company_LOTS[0]))
+#######################################
+#		  Find Lot_by_id              #
+#######################################
+
+
+
+
+def add_product(Lot_id,Name,Brand,product_id, company_id, EPA,PHI,REI, Temp_type, Temp ,cursor, mYSQL):
+	#auto Generate Lot_id
+	#
+	#Lot_id =''
+
+	#product id Definition 
+	# product 1 (semillas)
+	# product 2 (fertilizantes)
+	# product 3 (Control de plagas)
+	# product 4 (Insumos de mantenimiento)
+	# product 5 (Uso humano)
+
+	cursor.execute("INSERT INTO Platform_abacrop.Products (Lot_id, company_id, product_id, Name, Brand, EPA, PHI, REI, Temperature, TemperatureTypeId) VALUES (%s, %s, %s, %s,     %s,  %s,  %s,  %s, %s)", (Lot_id, company_id, product_id, Name, Brand, EPA, PHI, REI, Temp_type, Temp))
+	mYSQL.connection.commit()
+######### PRODUCTS SECTION ############
