@@ -14,7 +14,7 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 def Products():
     """Function gets info from the DB and render it in Products.html table"""
     cursor = mYSQL.connection.cursor()
-    cursor.execute('select * from Platform_abacrop.Products')
+    cursor.execute('select * from Platform_abacrop.Create_Products')
     # data == toda la data que esta almacenada en la base de datos.
     data = cursor.fetchall()
     print(data)
@@ -28,7 +28,7 @@ def get_product(id):
         be rendered in editProduct.html """
     cursor = mYSQL.connection.cursor()
     cursor.execute(
-        'select * from Platform_abacrop.Products WHERE productId = %s', (id,))
+        'select * from Platform_abacrop.Create_Products WHERE productId = %s', (id,))
     products_data = cursor.fetchall()
     print(products_data)
     return render_template('editProduct.html', product=products_data[0])
@@ -81,7 +81,7 @@ def add_product():
         temperatureTypeId = request.form['Product.TemperatureTypeId']
 
         cursor = mYSQL.connection.cursor()
-        cursor.execute("INSERT INTO Platform_abacrop.Products (Name, Brand, ClassificationId, EPA, PHI, REI, Temperature, TemperatureTypeId) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+        cursor.execute("INSERT INTO Platform_abacrop.Create_Products (Name, Brand, Classification_id, EPA, PHI, REI, Temp, Temp_Type) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
                        (name, brand, classificationId, epa, phi, rei, temperature, temperatureTypeId))
         mYSQL.connection.commit()
         flash("Product Added")
