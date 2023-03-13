@@ -10,7 +10,7 @@ mYSQL = db_Msql.Initialize_Msql(app)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/products', methods=['POST', 'GET'])
 def Products():
     """Function gets info from the DB and render it in Products.html table"""
     cursor = mYSQL.connection.cursor()
@@ -18,7 +18,7 @@ def Products():
     # data == toda la data que esta almacenada en la base de datos.
     data = cursor.fetchall()
     print(data)
-    return render_template('Products.html', products=data)
+    return redirect(url_for('Products.html', products=data))
 
 
 @app.route('/EditProduct/<string:id>', methods=['POST', 'GET'])
@@ -89,7 +89,3 @@ def add_product():
     # El html que estoy usando para agregar los producto se llama base
     # Products.html por algun motivo no me renderiza el CSS.
     return render_template('AddProduct.html')
-
-
-if __name__ == "__main__":
-    app.run(port=5014, host='127.0.0.1', debug=True)

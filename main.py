@@ -6,6 +6,7 @@ from flask_mysqldb import MySQL
 import MySQLdb.cursors
 from numpy import random
 import mail_config
+import Product
 
 # Initialize the mysql platform
 app = Flask(__name__)
@@ -45,7 +46,7 @@ def Login():
                 # To be re-define
                 session['Role'] = "Company"
 
-                return redirect('Company/Admin')
+                return render_template('Dashboard.html')
 
     ################################################################################################################
     # if The Credentials were not found in the company table then the program will look at the employee table      #
@@ -206,4 +207,4 @@ def test():
 
 # Run the application
 if __name__ == "__main__":
-    app.run(host='127.0.0.1', port=80, debug=True)
+    app.run(host='127.0.0.1', port=8013, debug=True)
