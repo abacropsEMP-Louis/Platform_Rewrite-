@@ -41,7 +41,7 @@ def Login():
 			account = cursor.fetchone();
 			if account:
 				session['loggedin'] = True
-				session['id'] = account['company_id']
+				session['company_id'] = account['company_id']
 				session['employees'] = account['Amount_Employes']
 				session['email'] = account['Email']
 				session['password'] = account['Password']
@@ -71,7 +71,7 @@ def Login():
 				session['user_id'] = account["user_id"]
 				
 				session['company_id'] = account["company_id"]
-				
+                                
 				#This Function alocates the company name by id (for easy interaction)
 				session['Company_Name'] = db_Msql.Get_company_name(session['company_id'], cursor)
 
@@ -112,126 +112,70 @@ def administrator():
 
     return render_template('admin.html')
 
-############### Product ######################
-@app.route('/products', methods=['GET', 'POST'])
-def products():
-    if (session['Role'] == "Company"):
-
-        return render_template('Products.html', Company_Name=session['Company_Name'])
-    else:
-        return redirect('Dashboard')
+@app.route('/Products', methods=['GET', 'POST'])
+def Products():
+    cursor = mYSQL.connection.cursor(MySQLdb.cursors.DictCursor)
     
+    data = db_Msql.Get_product(cursor=cursor, mYSQL=mYSQL, company_id=str(session['company_id']))
+    return render_template('Products.html', User_Name = session['Company_Name'], Company_name=session['Company_Name'], products=data)
 
 ############# AddProduct ##################
 @app.route('/AddProduct', methods=['GET', 'POST'])
 def AddProducts():
-    msg = False
-    name = ""   
+    if (session['Role'] == 'Company'):
+        if (request.method == "POST"):
+            print("Method Request")
+            #EXTRACT DATA FROM TEMPLATE 
+##########################################
+            # requesting ( NAME & BRAND )
+            Product_Name = request.form.get('Product_Name')
+            Brand_Name =  request.form.get('Product_Brand')
+            
+            # requesting ( EPA | PHI | REI )
+            EPA = request.form.get('Product.Epa')
+            PHI = request.form.get('Product.Phi')
+            REI = request.form.get('Product.Rei')
 
-    cursor = mYSQL.connection.cursor(MySQLdb.cursors.DictCursor)
+            # requesting (Tempeture | Mesurment )
+            Storage_temp = request.form.get('Product.TemperatureStorage')
+            Mesurment_temp = request.form.get('Product.TemperatureTypeId')
+
+            # Product classification
+            clasification_value = request.form.get('Classification')
+
+            # Validate the DATA 
+
+            #validate input to write it to databases;
+            #if the len of PHI is equal to 0 the value goes null 
+            if (len(PHI) == 0):
+                PHI = None; 
+
+
+        # if the len of REI is Equal to 0 the value goes null
+            if (len(REI) == 0):
+                REI = None;
+
+            if (len(EPA) == 0 ):
+                EPA =None
+
+
+        #if Storage tempeture (int) == 0 value goes nul 
+            if (len(Storage_temp) == 0 ):
+                Storage_temp = None;
+                Mesurment_temp = None;
+
+
+
+    #Write data to databases
+            cursor = mYSQL.connection.cursor(MySQLdb.cursors.DictCursor)
+
+
+            db_Msql.Create_product(cursor=cursor, mYSQL=mYSQL, company_id=session['id'] ,  classification_id=clasification_value, Brand=Brand_Name, Name=Product_Name, PHI=PHI, REI=REI, EPA=EPA, temp_type=Mesurment_temp, temp=Storage_temp)
+
+
+            return redirect(url_for('Products'))
     
-   
-
-    #ARRAY OF CLASSIFICATION VALUES 
-    classifications=['None','Semillas','Fertilizantes', "Control de plagas","Insumos de mantenimiento","Uso humano"]
-
-    # This is the classification value of the types of product that the user can create
-    clasification_value = request.form.get('Classification')
-    print("ClasificationID: " + str(clasification_value))
-    
-    #################### INPUT ( NAME & Brand ) ######################
-    # THIS INPUT IS ONLY ENABLE WHEN THE USER ENTERS THE CLASSIFICATION clasification_value THAT HE WANT TO USE 
-    Product_Name = request.form.get('Product_Name')
-    print("Priduct Name: " + str(Product_Name))
-    
-    Product_Brand = request.form.get('Product_Brand')
-    print("Product Brand: " + str(Product_Brand))
-    
-    #################### INPUT ( NAME & Brand ) ######################
-
-
-    #################### INPUT ( EPA | PHI | REI ) ######################
-    
-    #EPA INTPUT
-    EPA = request.form.get('Product.Epa')
-    print("EPA: " + str(EPA))
-    PHI = request.form.get('Product.Phi')
-    print("PHI: " + str(PHI))
-    REI = request.form.get('Product.Rei')
-    print("REI: " + str(REI))
-    #################### INPUT ( EPA | PHI | REI ) ######################
-
-
-    #################### INPUT (TEMPETURE & MEASIREMENT) ###############
-
-    Storage_temp = request.form.get('Product.TemperatureStorage')
-
-    #TEMPETURE MEASUREMENT
-    Mesurment_temp = request.form.get('Product.TemperatureTypeId')
-
-    print(str("Storage temp: ")  + str(Storage_temp) + str(Mesurment_temp))
-
-    #################### INPUT (TEMPETURE & MEASIREMENT) ###############
-
-
-    # Option for the dropdown (Semillas)
-    if (clasification_value == "1"):
-        
-        # JINJAX MESSAGE 
-        msg = True
-
-        #CLASSIFICATION NAME
-        name = classifications[1]
-        #if (Storage_temp != None):
-        print("successfull data ")
-        #    db_Msql.add_product(1,Product_Name, Product_Brand, product_id=1, company_id=session['id'], EPA="Test", PHI="Test", REI="Test", Temp_type=Mesurment_temp, Temp=Storage_temp, cursor=cursor, mYSQL=mYSQL)
-        return render_template('AddProductqty.html', msg=msg, name=name, value=clasification_value)
-
-
-    # Option for the dropdown (Semillas)
-    if (clasification_value == "2"):
-        
-        # JINJAX MESSAGE    
-        msg = True
-
-        #CLASSIFICATION NAME 
-        name = classifications[2]
-
-        return render_template('AddProductqty.html', msg=msg, name=name, value=clasification_value)
-    
-    #Option for the dropdown (Control de plagas)
-    if (clasification_value == "3"):
-        
-        #JINJAX MESSAGE 
-        msg= True
-
-        #CLASSIFICATION NAME
-        name = classifications[3]
-
-        return render_template('AddProductqty.html', msg=msg, name=name, value=clasification_value)
-
-    if (clasification_value == "4"):
-        # JINJAX MESSAGE
-        msg = True
-
-        #CLASSIFICATION NAME
-        name = classifications[4]
-
-        return render_template('AddProductqty.html', msg=msg, name=name, value=clasification_value)
-
-
-    if (clasification_value == "5"):
-        
-        #JINJAX MESSAGE
-        msg = True
-        #CLASSIFICATION NAME
-        name = classifications[5]
-        
-        return render_template('AddProductqty.html', msg=msg, name=name, value=clasification_value)
-    
-    return render_template('AddProductqty.html', msg=msg, name=name, value=clasification_value)
-
-
+        return render_template('AddProduct.html')
 
 ############# AddProduct ##################
 
