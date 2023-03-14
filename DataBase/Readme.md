@@ -15,13 +15,3 @@ sudo chmod +x Database.sh
 ```
 sudo ./Database.sh
 ```
-
-
-
-```
-sudo chmod +x Companies.sh
-```
-
-```
-sudo ./Companies.sh
-```

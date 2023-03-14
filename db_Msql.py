@@ -76,39 +76,107 @@ def Update_Password(Email, New_Password, cursor, mYSQL):
 
 
 
+###########################################################################
+#                            PRODUCTS SECTION                             #
+###########################################################################
 
-######### PRODUCTS SECTION ############
 
-
-#######################################
-#		  Find Lot_by_id              #
-#######################################
-
-def find_lot_by_company(company_id, cursor):
-	cursor.execute('SELECT * FROM Products WHERE company_id = %s' , (company_id, ))
-
-	company_LOTS = cursor.fetchall()
-
-	print( str(company_LOTS[0]))
-#######################################
-#		  Find Lot_by_id              #
-#######################################
+def Create_product(cursor, mYSQL, company_id, classification_id,   Brand, Name, PHI, REI ,EPA, temp_type, temp):
 
 
 
 
-def add_product(Lot_id,Name,Brand,product_id, company_id, EPA,PHI,REI, Temp_type, Temp ,cursor, mYSQL):
-	#auto Generate Lot_id
-	#
-	#Lot_id =''
+		command = """  INSERT INTO Create_Products 
+		(company_id, classification_id, product_id, Brand, Name, EPA, PHI, REI, Temp_Type, Temp) 
+		values  (%s, %s, %s, %s, %s, %s, %s, %s, %s ,%s ); """
 
-	#product id Definition 
-	# product 1 (semillas)
-	# product 2 (fertilizantes)
-	# product 3 (Control de plagas)
-	# product 4 (Insumos de mantenimiento)
-	# product 5 (Uso humano)
+		product_id = generate_product_id(company_id=company_id, cursor=cursor)
+#                
+		Values = (company_id, classification_id, product_id, Brand ,Name, EPA, PHI , REI, temp_type , temp,)
 
-	cursor.execute("INSERT INTO Platform_abacrop.Products (Lot_id, company_id, product_id, Name, Brand, EPA, PHI, REI, Temperature, TemperatureTypeId) VALUES (%s, %s, %s, %s,     %s,  %s,  %s,  %s, %s)", (Lot_id, company_id, product_id, Name, Brand, EPA, PHI, REI, Temp_type, Temp))
+
+		cursor.execute(command, Values)
+		mYSQL.connection.commit()
+		
+
+#Read products from mysql (By company id )
+def Get_product(cursor, mYSQL, company_id):
+	#write command to mysql 
+	cursor.execute('SELECT * FROM Create_Products WHERE company_id= %s', (company_id) )
+	#Fetch all data 
+	data = cursor.fetchall()
+	# Close the connection
 	mYSQL.connection.commit()
-######### PRODUCTS SECTION ############
+	
+	#return the data 
+	return data
+
+
+
+#This function create new product id 
+#the product id is classification for (NAME AND BRAND )
+def generate_product_id(company_id, cursor):
+
+# Product list under company_id 
+	Products = []
+
+	cursor.execute('SELECT * FROM Create_Products WHERE company_id= %s', (company_id,))
+
+
+	Products = cursor.fetchall();
+
+	#if There is now product created under this table 
+	if(len(Products) == (0)):
+	# then the value return will  be 1 
+		new_lot = 1
+
+
+	else:
+		for t in Products:
+
+		# Await for the last value 
+			last_product = t
+
+		#Get the last lot_id Convert the value into a integer  & add 1
+		new_lot =  1 + int(last_product['product_id'])
+
+
+
+	#Return the value to the CALLER
+	return new_lot;
+
+
+
+#REDIFINE THIS FOR LOT TABLE 
+	
+#This function create new  lot_id under the  company 
+def Create_lot_id(company_id, cursor):
+#	Products list for the mysql lib
+	Products = []
+
+	#From the table Product extract only from were the company_id is the same
+	cursor.execute('SELECT * FROM Products WHERE company_id = %s', (company_id,))
+
+	#Extract all values belonging to the company_id
+	Products = cursor.fetchall()
+	
+
+	#if There is now product created under this table 
+	if(len(Products) == (0)):
+	# then the value return will  be 1 
+		new_lot = 1
+
+
+	else:
+		for t in Products:
+
+		# Await for the last value 
+			last_product = t
+
+		#Get the last lot_id Convert the value into a integer  & add 1
+		new_lot =  1 + int(last_product['Lot_id'])
+
+
+
+	#Return the value to the CALLER
+	return new_lot;

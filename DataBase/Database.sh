@@ -26,4 +26,37 @@ sudo mysql -Bse "use Platform_abacrop; CREATE TABLE IF NOT EXISTS Company( compa
 sudo mysql -Bse "use Platform_abacrop; Create TABLE IF NOT EXISTS Employees(user_id INT PRIMARY KEY NOT NULL, company_id INT, First_name VARCHAR(45) NOT NULL, Last_name VARCHAR(45) NOT NULL, Email VARCHAR(100) NOT NULL, FOREIGN KEY (company_id) REFERENCES Company(company_id));"
 
 # Creating Product table
-sudo mysql -Bse "use Platform_abacrop; Create TABLE IF NOT EXISTS Products( Lot_id INT PRIMARY KEY NOT NULL, company_id INT NOT NULL, product_id INT NOT NULL, Name VARCHAR(50) NOT NULL, Brand VARCHAR(50) NOT NULL, EPA VARCHAR(25) NULL, PHI INT NULL, REI INT NULL, Temp_Type VARCHAR(1) NULL, Temp INT NULL, FOREIGN KEY (company_id) REFERENCES Company(company_id));"
+sudo mysql -Bse "use Platform_abacrop; Create TABLE IF NOT EXISTS Create_Products( company_id INT NOT NULL,  classification_id INT NOT NULL, product_id INT NOT NULL, Brand  VARCHAR(25) NOT NULL, Name VARCHAR(25) NOT NULL, EPA VARCHAR(15) NULL,  PHI INT NULL, REI INT NULL,  Temp_Type VARCHAR(1) NULL, Temp INT NULL, 
+ FOREIGN KEY (company_id) REFERENCES Company(company_id));"
+
+
+
+# Product Lot  table 
+sudo mysql -Bse "use Platform_abacrop; Create TABLE IF NOT  EXISTS Add_Lot (
+    company_id INT NOT NULL,
+    classification_id INT NOT NULL, 
+    product_id INT NOT NULL, 
+    lot_id INT NOT NULL, 
+    qty INT NOT NULL, 
+    measurement_id INT NOT NULL, 
+    price int NOT NULL,
+    created_at  varchar(10) NULL,
+    
+    FOREIGN KEY (company_id) REFERENCES Company(company_id));"
+
+
+# Report Product Report product 
+sudo mysql -Bse "use Platform_abacrop; Create TABLE IF NOT EXISTS Report_Product(
+    company_id INT NOT NULL,
+    classification_id INT NOT NULL, 
+    product_id INT NOT NULL,
+    lot_id INT NOT NULL,
+    Brand VARCHAR(25) ,
+    Name VARCHAR(25),
+    Amout INT NOT NULL,
+    measurement_id INT NOT NULL,
+    price int NOT NULL,
+    created_at VARCHAR(10) NULL,
+    ended_at VARCHAR(10) NULL,
+    FOREIGN KEY (company_id) REFERENCES Company(company_id) );"
+
