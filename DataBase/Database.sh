@@ -37,6 +37,7 @@ sudo mysql -Bse "use Platform_abacrop; Create TABLE IF NOT  EXISTS Add_Lot (
     classification_id INT NOT NULL, 
     product_id INT NOT NULL, 
     lot_id INT NOT NULL, 
+    lot_number INT NULL,
     qty INT NOT NULL, 
     measurement_id INT NOT NULL, 
     price int NOT NULL,

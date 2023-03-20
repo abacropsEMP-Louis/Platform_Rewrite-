@@ -112,6 +112,20 @@ def Get_product(cursor, mYSQL, company_id):
 	return data
 
 
+# Add New lot to the database
+def Create_Lot(cursor, mYSQL, company_id, classification_id, product_id, qty, measurement_id, price, created_at ):
+	command = """ INSERT INTO Add_Lot (company_id, classification_id, product_id, lot_id, qty, measurement_id, price, created_at)
+				values ( %s, %s, %s, %s, %s, %s, %s, %s ) """	
+
+	# Generated lot id 
+	Lot_id = Create_lot_id(company_id=company_id, cursor=cursor)
+	Values = (company_id,classification_id, product_id, Lot_id, qty, measurement_id, price, created_at,)
+
+
+	cursor.execute(command, Values)
+
+	mYSQL.connection.commit()
+
 
 #This function create new product id 
 #the product id is classification for (NAME AND BRAND )
@@ -155,7 +169,7 @@ def Create_lot_id(company_id, cursor):
 	Products = []
 
 	#From the table Product extract only from were the company_id is the same
-	cursor.execute('SELECT * FROM Products WHERE company_id = %s', (company_id,))
+	cursor.execute('SELECT * FROM Add_Lot WHERE company_id = %s', (company_id,))
 
 	#Extract all values belonging to the company_id
 	Products = cursor.fetchall()
@@ -174,7 +188,7 @@ def Create_lot_id(company_id, cursor):
 			last_product = t
 
 		#Get the last lot_id Convert the value into a integer  & add 1
-		new_lot =  1 + int(last_product['Lot_id'])
+		new_lot =  1 + int(last_product['lot_id'])
 
 
 

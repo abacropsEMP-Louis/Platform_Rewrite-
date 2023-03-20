@@ -6,6 +6,7 @@ from flask_mysqldb import MySQL
 import MySQLdb.cursors
 from numpy import random
 import mail_config
+from datetime import datetime
 
 # Initialize the mysql platform 
 app = Flask(__name__)
@@ -31,7 +32,7 @@ def Login():
 
 		#Request the user { Password } from the website post 
 		Password = request.form.get('Password')
-		
+		test
 
 		#Check if the account exist
 		cursor = mYSQL.connection.cursor(MySQLdb.cursors.DictCursor)
@@ -112,6 +113,8 @@ def administrator():
 
     return render_template('admin.html')
 
+############ Products List ################
+
 @app.route('/Products', methods=['GET', 'POST'])
 def Products():
     cursor = mYSQL.connection.cursor(MySQLdb.cursors.DictCursor)
@@ -119,14 +122,36 @@ def Products():
     data = db_Msql.Get_product(cursor=cursor, mYSQL=mYSQL, company_id=str(session['company_id']))
     return render_template('Products.html', User_Name = session['Company_Name'], Company_name=session['Company_Name'], products=data)
 
-############# AddProduct ##################
+
+@app.route('/AddLot', methods=['GET', 'POST'] )
+def AddLot():
+
+    if (request.method == "POST"):
+        cursor = mYSQL.connection.cursor(MySQLdb.cursors.DictCursor)
+        Product_Amount = request.form.get('Product_QTY_Amount')
+        Measurement_id = request.form.get('Product_QTY_Measurement')
+        Product_price = request.form.get('Product_QTY_Price')
+        product_Lot_Number = request.form.get('Product_LOT_Number')
+
+        date_time = datetime.now()
+        created_at = date_time.strftime("%m/%d/%Y")
+        print(product_Lot_Number)
+#        db_Msql.Create_Lot(cursor=cursor, mYSQL=mYSQL, Product_Name='TEST NAME' ,company_id=session['company_id'],classification_id='1', product_id='1', qty=Product_Amount, measurement_id=Measurement_id, price=Product_price, created_at=created_at)
+
+    return render_template('AddLot.html', User_Name=session['Company_Name'], Product_Name="Product Name Example")
+
+
+
+############# Add New Product ##################
 @app.route('/AddProduct', methods=['GET', 'POST'])
 def AddProducts():
     if (session['Role'] == 'Company'):
         if (request.method == "POST"):
             print("Method Request")
             #EXTRACT DATA FROM TEMPLATE 
-##########################################
+        
+        ###############################################
+        
             # requesting ( NAME & BRAND )
             Product_Name = request.form.get('Product_Name')
             Brand_Name =  request.form.get('Product_Brand')
@@ -170,7 +195,7 @@ def AddProducts():
             cursor = mYSQL.connection.cursor(MySQLdb.cursors.DictCursor)
 
 
-            db_Msql.Create_product(cursor=cursor, mYSQL=mYSQL, company_id=session['id'] ,  classification_id=clasification_value, Brand=Brand_Name, Name=Product_Name, PHI=PHI, REI=REI, EPA=EPA, temp_type=Mesurment_temp, temp=Storage_temp)
+            db_Msql.Create_product(cursor=cursor, mYSQL=mYSQL, company_id=str(session['company_id']) ,  classification_id=clasification_value, Brand=Brand_Name, Name=Product_Name, PHI=PHI, REI=REI, EPA=EPA, temp_type=Mesurment_temp, temp=Storage_temp)
 
 
             return redirect(url_for('Products'))
